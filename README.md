@@ -1,8 +1,6 @@
 # YachtMall
 游艇销售系统，包含商城和后台管理
 
-# 项目名称——YachtMall 
-
 # 需求分析
 
 ## 1.角色
@@ -96,8 +94,8 @@ id一律使用uuid32位，用户名、密码varchar（20）
 | 字段名         | 类型     | 含义         | 值（例子）        |
 | -------------- | -------- | ------------ | ----------------- |
 | id             | varchar  | 商品id       |                   |
-| name           | varchar  | 商品名称     |                   |
-| category       | int      | 类别         | 游艇、零件        |
+| product_name   | varchar  | 商品名称     |                   |
+| type           | int      | 类别         | 游艇、零件        |
 | description    | varchar  | 说明         |                   |
 | img_url        | varchar  | 图片路径     |                   |
 | enable_status  | int      | 状态         | 1在售0停售        |
@@ -111,7 +109,6 @@ id一律使用uuid32位，用户名、密码varchar（20）
 | -------------- | -------- | -------- | ------------------------------ |
 | id             | varchar  | id       |                                |
 | product_id     | varchar  | 商品id   | 外键，关联tb_shop              |
-| stock          | int      | 总量     |                                |
 | surplus        | int      | 剩余     |                                |
 | price          | decimal  | 价格     |                                |
 | create_time    | datetime | 创建时间 |                                |
@@ -141,7 +138,7 @@ id一律使用uuid32位，用户名、密码varchar（20）
 | id             | varchar  | id       |                   |
 | editer_id      | varchar  | 发布者id | 外键，关联tb_user |
 | title          | varchar  | 信息标题 |                   |
-| content        | varchar  | 信息内容 |                   |
+| content        | text     | 信息内容 |                   |
 | enable_status  | int      | 状态     |                   |
 | create_time    | datetime | 创建时间 |                   |
 | last_edit_time | datetime | 修改时间 |                   |
@@ -168,3 +165,4 @@ id一律使用uuid32位，用户名、密码varchar（20）
 2. 企业用户可以新建商铺，仅能创建一次
 3. 一般来说，购物车里面的商品价格从库存表获取
 4. 加购物车的时候先看有没有相同商品，有则追加数量
+5. 购买商品，遍历商品id，相同id生成一个订单
