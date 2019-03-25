@@ -50,17 +50,16 @@ id一律使用uuid32位，用户名、密码varchar（20）
 
 用户表——tb_user
 
-| 字段名         | 类型     | 含义         | 值（例子）                          |
-| -------------- | -------- | ------------ | ----------------------------------- |
-| **id**         | varchar  | id           | uuid字符串                          |
-| usr            | varchar  | 用户名       | admin                               |
-| pwd            | varchar  | 密码         | 000000                              |
-| gender         | int      | 性别         | 1男 2女                             |
-| name           | varchar  | 姓名         | 张三                                |
-| enable_status  | int      | 是否可用     | 0 不可用 1可用                      |
-| user_type      | int      | 用户角色     | 1.顾客 2.企业 3.管理员 4.超级管理员 |
-| create_time    | datetime | 创建时间     |                                     |
-| last_edit_time | datetime | 最后修改时间 |                                     |
+| 字段名         | 类型     | 含义         | 值（例子）                                  |
+| -------------- | -------- | ------------ | ------------------------------------------- |
+| **id**         | varchar  | id           | uuid字符串                                  |
+| usr            | varchar  | 用户名       | admin                                       |
+| pwd            | varchar  | 密码         | 000000                                      |
+| name           | varchar  | 姓名         | 张三                                        |
+| enable_status  | int      | 是否可用     | 0 不可用 1可用                              |
+| user_type      | int      | 用户角色     | 1.普通用户 2.企业用户 3.管理员 4.超级管理员 |
+| create_time    | datetime | 创建时间     |                                             |
+| last_edit_time | datetime | 最后修改时间 |                                             |
 
 收货地址表——tb_addr
 
