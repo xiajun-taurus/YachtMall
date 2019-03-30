@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="/admin/head"></head>
+<!-- Bootstrap Table CSS -->
+<link th:href="@{/assets/plugins/bootstrap/css/bootstrap-table.min.css}" rel="stylesheet">
+
+<style>
+  .bootstrap-table .btn-group label {
+    color: black !important;
+  }
+</style>
+<body class="fix-header card-no-border">
+
+<div id="main-wrapper">
+
+  <header th:replace="/admin/header"></header>
+
+  <div th:replace="/admin/aside"></div>
+
+  <div class="page-wrapper">
+
+    <!-- Container fluid  -->
+
+    <div class="container-fluid">
+
+      <!-- Bread crumb and right sidebar toggle -->
+
+      <div class="row page-titles">
+        <div class="col-md-6 col-8 align-self-center">
+          <h3 class="text-themecolor m-b-0 m-t-0">Dashboard</h3>
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+              <a href="javascript:void(0)">商品管理</a>
+            </li>
+          </ol>
+        </div>
+
+      </div>
+
+      <!-- End Bread crumb and right sidebar toggle -->
+
+
+      <!-- Start Page Content -->
+
+      <div class="row">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-block">
+              <div id="toolbar">
+                <a th:href="@{/product/form}" class="btn btn-primary">添加商品</a>
+              </div>
+              <table id="dataList"></table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- End PAge Content -->
+
+    </div>
+
+    <!-- End Container fluid  -->
+
+
+    <!-- footer -->
+
+    <footer class="footer text-center">
+      © 2017 Monster Admin by wrappixel.More Templates
+      <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a>
+      - Collect from
+      <a href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a>
+    </footer>
+
+    <!-- End footer -->
+
+  </div>
+
+  <!-- End Page wrapper  -->
+
+</div>
+
+<!-- End Wrapper -->
+<!--scripts-->
+<div class="scripts" th:replace="/admin/footer"></div>
+<script th:src="@{/js/data-table.js}"></script>
+<script>
+
+  var columns = [
+    {
+      title: '序号',
+      field: '',
+      align: 'center',
+      formatter: getIndex('#dataList')
+    }, {
+      title: '图片',
+      field: 'imgUrl',
+      align: 'center',
+      formatter:function (value,row) {
+        return '<img src='+row.imgUrl+'/>';
+      }
+    }, {
+      field: 'productName',
+      title: '商品名称',
+      align: 'center'
+    },
+    {
+      field: 'description',
+      title: '商品描述',
+      align: 'left'
+    },
+    {
+      field: 'productType',
+      title: '类型',
+      align: 'center',
+      formatter: function (value) {
+        switch (value) {
+          case 1:
+            return '游艇';
+          case 2:
+            return '零件';
+        }
+      }
+    },
+    {
+      field: 'enableStatus',
+      title: '状态',
+      align: 'center',
+      align: 'center',
+      formatter:
+
+          function (value) {
+            if (value === 1) {
+              return '启用';
+            } else {
+              return '不可用';
+            }
+          }
+    }
+    ,
+    {
+      field: 'createTime',
+      title: '创建时间',
+      align: 'center'
+    }
+    ,
+    {
+      field: 'lastEditTime',
+      title: '上次修改时间',
+      align: 'center'
+    }
+    ,
+    {
+      field: 'id',
+      title: '操作',
+      align: 'center',
+      formatter: function (value, row) {
+        return [
+          '<a class="btn btn-primary" href="[[@{/product/form}]]?id=' + value + '" >',
+          '<i class="fa fa-edit">编辑</i>',
+          '</a>  ',
+          '<a class="btn btn-danger" href="[[@{/product/del}]]?id=' + value + '" >',
+          '<i class="fa fa-remove">删除</i>',
+          '</a>'
+        ].join('');
+      }
+    }
+  ]
+  InitTable('#dataList', '[[@{/product/list}]]', columns);
+
+</script>
+</body>
+
+</html>

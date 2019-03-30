@@ -94,7 +94,7 @@ id一律使用uuid32位，用户名、密码varchar（20）
 | -------------- | -------- | ------------ | ----------------- |
 | id             | varchar  | 商品id       |                   |
 | product_name   | varchar  | 商品名称     |                   |
-| type           | int      | 类别         | 游艇、零件        |
+| type           | int      | 类别         | 1游艇、2零件      |
 | description    | varchar  | 说明         |                   |
 | img_url        | varchar  | 图片路径     |                   |
 | enable_status  | int      | 状态         | 1在售0停售        |
@@ -135,7 +135,7 @@ id一律使用uuid32位，用户名、密码varchar（20）
 | 字段名         | 类型     | 含义     | 值（例子）        |
 | -------------- | -------- | -------- | ----------------- |
 | id             | varchar  | id       |                   |
-| editer_id      | varchar  | 发布者id | 外键，关联tb_user |
+| editor_id      | varchar  | 发布者id | 外键，关联tb_user |
 | title          | varchar  | 信息标题 |                   |
 | content        | text     | 信息内容 |                   |
 | enable_status  | int      | 状态     |                   |

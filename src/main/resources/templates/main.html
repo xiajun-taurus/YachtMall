@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8">
+  <title>后台管理</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <!-- Bootstrap core CSS -->
+  <link th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link th:href="@{/css/font-awesome.min.css}" rel="stylesheet">
+
+  <!-- ionicons -->
+  <link th:href="@{/css/ionicons.min.css}" rel="stylesheet">
+
+  <!-- Simplify -->
+  <link th:href="@{/css/simplify.min.css}" rel="stylesheet">
+
+</head>
+
+<body class="overflow-hidden">
+<div class="wrapper preload">
+  <header class="top-nav">
+    <div class="top-nav-inner">
+      <div class="nav-header">
+        <button type="button" class="navbar-toggle pull-left sidebar-toggle" id="sidebarToggleSM">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+
+        <ul class="nav-notification pull-right">
+          <li>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i
+                class="fa fa-cog fa-lg"></i></a>
+            <span class="badge badge-danger bounceIn">1</span>
+            <ul class="dropdown-menu dropdown-sm pull-right">
+              <li class="user-avatar">
+                <img th:src="@{/images/profile/profile1.jpg}" alt="" class="img-circle">
+                <div class="user-content">
+                  <h5 class="no-m-bottom">John Doe</h5>
+                  <div class="m-top-xs">
+                    <a href="profile.html" class="m-right-sm">Profile</a>
+                    <a href="signin.html">Log out</a>
+                  </div>
+                </div>
+              </li>
+              <li>
+                <a href="inbox.html">
+                  Inbox
+                  <span class="badge badge-danger bounceIn animation-delay2 pull-right">1</span>
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  Notification
+                  <span class="badge badge-purple bounceIn animation-delay3 pull-right">2</span>
+                </a>
+              </li>
+              <li>
+                <a href="#" class="sidebarRight-toggle">
+                  Message
+                  <span class="badge badge-success bounceIn animation-delay4 pull-right">7</span>
+                </a>
+              </li>
+              <li class="divider"></li>
+              <li>
+                <a href="#">Setting</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+
+        <a href="#" class="brand">
+          <span class="brand-name">后台管理</span>
+        </a>
+      </div>
+      <div class="nav-container">
+        <button type="button" class="navbar-toggle pull-left sidebar-toggle" id="sidebarToggleLG">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+
+      </div>
+    </div><!-- ./top-nav-inner -->
+  </header>
+  <aside class="sidebar-menu fixed">
+    <div class="sidebar-inner scrollable-sidebar">
+      <div class="main-menu">
+        <ul class="accordion">
+          <li class="menu-header">
+            主菜单
+          </li>
+          <li class="bg-palette1">
+            <a href="#">
+									<span class="menu-content block">
+										<span class="menu-icon"><i class="block fa fa-home fa-lg"></i></span>
+										<span class="text m-left-sm">主菜单</span>
+									</span>
+
+            </a>
+          </li>
+          <li class="bg-palette2">
+            <a href="">
+									<span class="menu-content block">
+										<span class="menu-icon"><i class="block fa fa-desktop fa-lg"></i></span>
+										<span class="text m-left-sm">管理员账户管理</span>
+									</span>
+
+            </a>
+          </li>
+          <li class="bg-palette3">
+            <a href="#">
+									<span class="menu-content block">
+										<span class="menu-icon"><i class="block fa fa-user fa-lg"></i></span>
+										<span class="text m-left-sm">账户管理</span>
+
+									</span>
+            </a>
+          </li>
+          <li class="bg-palette4">
+            <a href="#">
+									<span class="menu-content block">
+										<span class="menu-icon"><i class="block fa fa-shopping-cart fa-lg"></i></span>
+										<span class="text m-left-sm">商品审批</span>
+
+									</span>
+
+            </a>
+          </li>
+          <li class="bg-palette3">
+            <a href="#">
+									<span class="menu-content block">
+										<span class="menu-icon"><i class="block fa fa-hospital-o fa-lg"></i></span>
+										<span class="text m-left-sm">商铺审批</span>
+
+									</span>
+            </a>
+          </li>
+
+          <li class="bg-palette4">
+            <a href="#">
+									<span class="menu-content block">
+										<span class="menu-icon"><i class="block fa fa-tasks fa-lg"></i></span>
+										<span class="text m-left-sm">资讯信息审批</span>
+
+									</span>
+
+            </a>
+          </li>
+
+        </ul>
+      </div>
+
+    </div><!-- sidebar-inner -->
+  </aside>
+
+  <div class="main-container">
+    <div class="padding-md">
+      <div th:replace="admin-list"></div>
+
+    </div><!-- ./padding-md -->
+  </div><!-- /main-user -->
+</div><!-- /wrapper -->
+
+<a href="#" class="scroll-to-top hidden-print"><i class="fa fa-chevron-up fa-lg"></i></a>
+
+<div th:include="footer"></div>
+<script th:src="@{/js/common/list.js}"></script>
+</body>
+</html>
