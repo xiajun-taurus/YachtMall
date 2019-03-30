@@ -43,13 +43,14 @@
       <!-- Start Page Content -->
 
       <div class="row">
-        <div class="col-6 offset-3">
+        <div class="col-8 offset-2">
           <div class="card">
             <div class="card-block">
               <div class="card-block">
-                <form class="form-horizontal form-material" th:action="@{/news/save}" method="post" onsubmit="return check()">
-                  <input type="hidden" name="editorId"  th:value="${news.editorId}" />
-                  <input type="hidden" name="editorId"  th:value="${news.id}" />
+                <form class="form-horizontal form-material" th:action="@{/news/save}" method="post"
+                      onsubmit="return check()">
+                  <input type="hidden" name="editorId" th:value="${news.editorId}"/>
+                  <input type="hidden" name="editorId" th:value="${news.id}"/>
                   <input type="hidden" name="content" id="content">
                   <div class="form-group">
                     <label class="col-md-12">标题</label>
@@ -58,7 +59,11 @@
                              th:value="${news.title}">
                     </div>
                   </div>
-                  <div id="editor"></div>
+                  <div class="form-group">
+                    <div class="col-sm-12">
+                      <div id="editor"></div>
+                    </div>
+                  </div>
                   <!--状态修改为管理员权限，不在此处-->
                   <div class="form-group">
                     <div class="col-sm-12">
@@ -103,9 +108,7 @@
 <script>
   var E = window.wangEditor;
   var editor = new E('#editor');
-  editor.create();
-
-  editor.customConfig.menu = [
+  editor.customConfig.menus = [
     'head',  // 标题
     'bold',  // 粗体
     'fontSize',  // 字号
@@ -125,6 +128,8 @@
     'undo',  // 撤销
     'redo'  // 重复
   ];
+  editor.create();
+
   //表单提交时将内容写入input
   function check() {
     var content = editor.txt.html();
