@@ -30,18 +30,23 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Slf4j
 @Controller
 public class TbProductController {
+
   @Autowired
   private TbProductServiceImpl tbProductService;
- 
 
-  //跳转到商品列表
+
+  /**
+   * 跳转到商品列表
+   */
   @GetMapping("product/list")
   public String productList() {
     return "/admin/product/product-list";
   }
 
 
-  //展示所有商品
+  /**
+   * 分页条件查询符合条件的所有商品，JSON格式返回
+   */
   @PostMapping("product/list")
   @ResponseBody
   public ModelMap list(@RequestBody Page<TbProduct> tbProductPage) {
@@ -50,7 +55,11 @@ public class TbProductController {
   }
 
 
-  //表单页面
+  /**
+   * 跳转到表单页面，如果传入的对象不是null，获取对象的所有信息，反填到表单中
+   *
+   * @param tbProduct 表单传入的Product对象
+   */
   @GetMapping({"product/form"})
   public String showForm(TbProduct tbProduct, Model model) {
     TbProduct product = new TbProduct();
@@ -61,16 +70,22 @@ public class TbProductController {
     return "/admin/product/form";
   }
 
-  //管理员新增/保存
+  /**
+   * 商品新增/保存
+   *
+   * @param tbProduct 表单传入的Product对象
+   */
   @PostMapping("product/save")
   @ResponseBody
   public ModelMap saveAdmin(TbProduct tbProduct) {
-    
+
     return saveproduct(tbProduct);
   }
 
 
-  //商品删除
+  /**
+   * 根据id删除商品
+   */
   @GetMapping("product/del")
   @ResponseBody
   public ModelMap del(@RequestParam("id") String id) {
@@ -81,6 +96,11 @@ public class TbProductController {
     return ReturnUtil.error("删除失败", null, null);
   }
 
+  /**
+   * 具体的保存方法，根据id判断商品是否存在，存在执行update，否则执行insert
+   *
+   * @param tbProduct 表单传入的Product对象
+   */
   //TODO:经常使用，后期改成泛型的，用反射改造
   public ModelMap saveproduct(TbProduct tbProduct) {
     if (!StringUtils.isEmpty(tbProduct.getId())) {

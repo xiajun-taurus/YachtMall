@@ -35,20 +35,26 @@ public class TbUserController {
   @Autowired
   private TbUserServiceImpl tbUserService;
 
-  //跳转到管理员列表
+  /**
+   * 跳转到管理员列表
+   */
   @GetMapping("admin/list")
   public String adminList() {
     return "/admin/user/admin-list";
   }
 
-  //跳转到用户列表
+  /**
+   * 跳转到用户列表
+   */
   @GetMapping("user/list")
   public String userList() {
     return "/admin/user/user-list";
   }
 
 
-  //展示所有用户
+  /**
+   * 分页条件查询符合条件的所有用户，JSON格式返回
+   */
   @PostMapping("user/list")
   @ResponseBody
   public ModelMap list(@RequestBody Page<TbUser> tbUserPage) {
@@ -57,8 +63,12 @@ public class TbUserController {
   }
 
 
-  //表单页面
-  @GetMapping({"admin/form","user/form"})
+  /**
+   * 跳转到表单页面，如果传入的对象不是null，获取对象的所有信息，反填到表单中
+   *
+   * @param tbUser 表单传入的User对象
+   */
+  @GetMapping({"admin/form", "user/form"})
   public String showForm(TbUser tbUser, Model model) {
     TbUser user = new TbUser();
     if (!StringUtils.isEmpty(tbUser.getId())) {
@@ -68,16 +78,23 @@ public class TbUserController {
     return "/admin/user/form";
   }
 
-  //管理员新增/保存
+  /**
+   * 管理员新增/保存
+   *
+   * @param tbUser 表单传入的User对象
+   */
   @PostMapping("admin/save")
   @ResponseBody
   public ModelMap saveAdmin(TbUser tbUser) {
+    //设置用户类型为admin
     tbUser.setUserType(Role.ADMIN.getUserType());
     return saveUser(tbUser);
   }
 
 
-  //用户删除
+  /**
+   * 根据id删除用户
+   */
   @GetMapping("user/del")
   @ResponseBody
   public ModelMap del(@RequestParam("id") String id) {
@@ -88,6 +105,11 @@ public class TbUserController {
     return ReturnUtil.error("删除失败", null, null);
   }
 
+  /**
+   * 具体的保存方法，根据id判断用户是否存在，存在执行update，否则执行insert
+   *
+   * @param tbUser 表单传入的User对象
+   */
   public ModelMap saveUser(TbUser tbUser) {
     //TODO: 不同角色创建，可以在此方法外面包一个方法，设置用户角色，再执行此方法
     if (!StringUtils.isEmpty(tbUser.getId())) {
