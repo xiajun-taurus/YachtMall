@@ -16,6 +16,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -29,15 +30,16 @@ import org.springframework.web.bind.annotation.ResponseBody;
  */
 @Slf4j
 @Controller
+@RequestMapping("news")
 public class TbNewsController {
   @Autowired
   private TbNewsServiceImpl tbNewsService;
 
-
+  //TODO 文章编辑需要用户id，列表发布者需要显示名称
   /**
    * 跳转到文章列表
    */
-  @GetMapping("news/list")
+  @GetMapping("list")
   public String newsList() {
     return "/admin/news/news-list";
   }
@@ -46,7 +48,7 @@ public class TbNewsController {
   /**
    * 分页条件查询符合条件的所有文章，JSON格式返回
    */
-  @PostMapping("news/list")
+  @PostMapping("list")
   @ResponseBody
   public ModelMap list(@RequestBody Page<TbNews> tbNewsPage) {
     IPage<TbNews> page = tbNewsService.page(tbNewsPage);
@@ -59,7 +61,7 @@ public class TbNewsController {
    *
    * @param tbNews 表单传入的User对象
    */
-  @GetMapping({"news/edit"})
+  @GetMapping({"edit"})
   public String showForm(TbNews tbNews, Model model) {
     TbNews news = new TbNews();
     if (!StringUtils.isEmpty(tbNews.getId())) {
@@ -74,7 +76,7 @@ public class TbNewsController {
    *
    * @param tbNews 表单传入的User对象
    */
-  @PostMapping("news/save")
+  @PostMapping("save")
   @ResponseBody
   public ModelMap saveAdmin(TbNews tbNews) {
 
@@ -85,7 +87,7 @@ public class TbNewsController {
   /**
    * 根据id删除文章
    */
-  @GetMapping("news/del")
+  @GetMapping("del")
   @ResponseBody
   public ModelMap del(@RequestParam("id") String id) {
     boolean b = tbNewsService.removeById(id);

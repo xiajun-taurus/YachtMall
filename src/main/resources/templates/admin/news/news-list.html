@@ -48,7 +48,7 @@
           <div class="card">
             <div class="card-block">
               <div id="toolbar">
-                <a th:href="@{/news/form}" class="btn btn-primary">添加文章</a>
+                <a th:href="@{/news/edit}" class="btn btn-primary">添加文章</a>
               </div>
               <table id="dataList"></table>
             </div>
@@ -153,7 +153,7 @@
       }
     }
   ]
-  InitTable('#dataList', '/manage/news/list', columns);
+  InitTable('#dataList', '[[@{/news/list}]]', columns);
 
 </script>
 </body>

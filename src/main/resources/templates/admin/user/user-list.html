@@ -48,7 +48,7 @@
           <div class="card">
             <div class="card-block">
               <div id="toolbar">
-                <a th:href="@{admin/form}" class="btn btn-primary">添加用户</a>
+                <a th:href="@{/admin/form}" class="btn btn-primary">添加用户</a>
               </div>
               <table id="dataList"></table>
             </div>
@@ -155,17 +155,17 @@
           return '-';
         }
         return [
-          '<a class="btn btn-primary" href="/admin/form?id=' + value + '" >',
+          '<a class="btn btn-primary" href="[[@{/admin/form}]]?id=' + value + '" >',
           '<i class="fa fa-edit">编辑</i>',
           '</a>  ',
-          '<a class="btn btn-danger" href="/user/del?id=' + value + '" >',
+          '<a class="btn btn-danger" href="[[@{/user/del}]]?id=' + value + '" >',
           '<i class="fa fa-remove">删除</i>',
           '</a>'
         ].join('');
       }
     }
   ]
-  InitTable('#dataList', '/manage/user/list', columns);
+  InitTable('#dataList', '[[@{/user/list}]]', columns);
 
 </script>
 </body>

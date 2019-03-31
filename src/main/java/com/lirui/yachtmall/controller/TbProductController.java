@@ -16,6 +16,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -29,6 +30,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  */
 @Slf4j
 @Controller
+@RequestMapping("product")
 public class TbProductController {
 
   @Autowired
@@ -38,7 +40,7 @@ public class TbProductController {
   /**
    * 跳转到商品列表
    */
-  @GetMapping("product/list")
+  @GetMapping("list")
   public String productList() {
     return "/admin/product/product-list";
   }
@@ -47,7 +49,7 @@ public class TbProductController {
   /**
    * 分页条件查询符合条件的所有商品，JSON格式返回
    */
-  @PostMapping("product/list")
+  @PostMapping("list")
   @ResponseBody
   public ModelMap list(@RequestBody Page<TbProduct> tbProductPage) {
     IPage<TbProduct> page = tbProductService.page(tbProductPage);
@@ -60,7 +62,7 @@ public class TbProductController {
    *
    * @param tbProduct 表单传入的Product对象
    */
-  @GetMapping({"product/form"})
+  @GetMapping({"form"})
   public String showForm(TbProduct tbProduct, Model model) {
     TbProduct product = new TbProduct();
     if (!StringUtils.isEmpty(tbProduct.getId())) {
@@ -75,7 +77,7 @@ public class TbProductController {
    *
    * @param tbProduct 表单传入的Product对象
    */
-  @PostMapping("product/save")
+  @PostMapping("save")
   @ResponseBody
   public ModelMap saveAdmin(TbProduct tbProduct) {
 
@@ -86,7 +88,7 @@ public class TbProductController {
   /**
    * 根据id删除商品
    */
-  @GetMapping("product/del")
+  @GetMapping("del")
   @ResponseBody
   public ModelMap del(@RequestParam("id") String id) {
     boolean b = tbProductService.removeById(id);

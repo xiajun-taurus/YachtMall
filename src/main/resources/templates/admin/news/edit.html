@@ -50,12 +50,12 @@
                 <form class="form-horizontal form-material" th:action="@{/news/save}" method="post"
                       onsubmit="return check()">
                   <input type="hidden" name="editorId" th:value="${news.editorId}"/>
-                  <input type="hidden" name="editorId" th:value="${news.id}"/>
+                  <input type="hidden" name="id" th:value="${news.id}"/>
                   <input type="hidden" name="content" id="content">
                   <div class="form-group">
                     <label class="col-md-12">标题</label>
                     <div class="col-md-12">
-                      <input type="text" name="productName" class="form-control form-control-line"
+                      <input type="text" name="title" class="form-control form-control-line"
                              th:value="${news.title}">
                     </div>
                   </div>
