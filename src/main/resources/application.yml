@@ -6,6 +6,7 @@ spring:
   thymeleaf:
     cache: false
   datasource:
+    # url: jdbc:p6spy:mysql://localhost:3306/yacht_mall?serverTimezone=GMT%2B8&useUnicode=true&useSSL=false&characterEncoding=utf8
     url: jdbc:p6spy:mysql://localhost:3306/yacht_mall?useUnicode=true&useSSL=false&characterEncoding=utf8
     username: root
     password: 123456
